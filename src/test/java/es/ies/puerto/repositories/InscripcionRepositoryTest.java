@@ -1,23 +1,16 @@
-package es.ies.puerto.models;
-
-import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+package es.ies.puerto.repositories;
 
 import es.ies.puerto.models.Constantes;
 import es.ies.puerto.models.Inscripcion;
 import es.ies.puerto.repositories.sqlite.InscripcionSqliteRepository;
 import es.ies.puerto.repositories.sqlite.SqliteConnectionManager;
+import org.junit.jupiter.api.*;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.LocalDate;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Tests del repositorio InscripcionSqliteRepository")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -25,10 +18,12 @@ class InscripcionRepositoryTest {
 
     private InscripcionSqliteRepository repository;
     private static final LocalDate FECHA = LocalDate.of(2026, 5, 28);
+    private static final String DB_URL = "jdbc:sqlite:target/test-inscripciones.db";
 
     @BeforeEach
-    void setUp() {
-        SqliteConnectionManager manager = new SqliteConnectionManager("jdbc:sqlite::memory:");
+    void setUp() throws Exception {
+        Files.deleteIfExists(Path.of("target/test-inscripciones.db"));
+        SqliteConnectionManager manager = new SqliteConnectionManager(DB_URL);
         repository = new InscripcionSqliteRepository(manager);
         repository.save(new Inscripcion(1, 1, 1, FECHA, Constantes.ACTIVA));
         repository.save(new Inscripcion(2, 1, 2, FECHA, Constantes.ACTIVA));
@@ -81,7 +76,7 @@ class InscripcionRepositoryTest {
 
     @Test
     @Order(7)
-    @DisplayName("findByUsuario devuelve lista vacia si el usuario no tiene inscripciones")
+    @DisplayName("findByUsuario devuelve lista vacia si no tiene inscripciones")
     void findByUsuarioTestVacio() {
         assertTrue(repository.findByUsuario(999).isEmpty());
     }
@@ -95,7 +90,7 @@ class InscripcionRepositoryTest {
 
     @Test
     @Order(9)
-    @DisplayName("findByActividad devuelve lista vacia si la actividad no tiene inscripciones")
+    @DisplayName("findByActividad devuelve lista vacia si no tiene inscripciones")
     void findByActividadTestVacio() {
         assertTrue(repository.findByActividad(999).isEmpty());
     }
