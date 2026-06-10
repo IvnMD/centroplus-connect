@@ -20,14 +20,14 @@ CREATE TABLE actividades (
     nombre            TEXT NOT NULL,
     tipo_actividad    TEXT NOT NULL,
     -- Valores válidos: ACADEMICA, DEPORTIVA
-    duracion_minutos  INTEGER NOT NULL,
-    precio            REAL NOT NULL,
-    plazas_maximas    INTEGER NOT NULL,
-    plazas_ocupadas   INTEGER NOT NULL DEFAULT 0
+    duracion_minutos INTEGER NOT NULL,
+    precio           REAL NOT NULL,
+    plazas_maximas   INTEGER NOT NULL,
+    plazas_ocupadas  INTEGER NOT NULL
 );
 
 CREATE TABLE inscripciones (
-    id            INTEGER PRIMARY KEY AUTOINCREMENT,
+    id            INTEGER PRIMARY KEY,
     id_usuario    INTEGER NOT NULL,
     id_actividad  INTEGER NOT NULL,
     fecha         TEXT NOT NULL,
