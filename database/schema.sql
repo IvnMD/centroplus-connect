@@ -6,19 +6,19 @@ DROP TABLE IF EXISTS actividades;
 DROP TABLE IF EXISTS usuarios;
 
 CREATE TABLE usuarios (
-    id           INTEGER PRIMARY KEY,
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
     nombre       TEXT NOT NULL,
     dni          TEXT NOT NULL UNIQUE,
     email        TEXT NOT NULL,
     telefono     TEXT,
     tipo_usuario TEXT NOT NULL
-    -- Valores válidos: ALUMNO, SOCIO, AMBOS
+    -- Valores válidos: ALUMNO, SOCIO, AMBOS, ADMIN
 );
 
 CREATE TABLE actividades (
-    id               INTEGER PRIMARY KEY,
-    nombre           TEXT NOT NULL,
-    tipo_actividad   TEXT NOT NULL,
+    id                INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre            TEXT NOT NULL,
+    tipo_actividad    TEXT NOT NULL,
     -- Valores válidos: ACADEMICA, DEPORTIVA
     duracion_minutos INTEGER NOT NULL,
     precio           REAL NOT NULL,
@@ -31,19 +31,19 @@ CREATE TABLE inscripciones (
     id_usuario    INTEGER NOT NULL,
     id_actividad  INTEGER NOT NULL,
     fecha         TEXT NOT NULL,
-    estado        TEXT NOT NULL,
+    estado        TEXT NOT NULL DEFAULT 'ACTIVA',
     -- Valores válidos: ACTIVA, CANCELADA
     FOREIGN KEY (id_usuario)   REFERENCES usuarios(id),
     FOREIGN KEY (id_actividad) REFERENCES actividades(id)
 );
 
 CREATE TABLE incidencias (
-    id          INTEGER PRIMARY KEY,
-    id_usuario  INTEGER NOT NULL,
-    asunto      TEXT NOT NULL,
-    descripcion TEXT NOT NULL,
-    fecha       TEXT NOT NULL,
-    estado      TEXT NOT NULL,
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_usuario   INTEGER NOT NULL,
+    asunto       TEXT NOT NULL,
+    descripcion  TEXT NOT NULL,
+    fecha        TEXT NOT NULL,
+    estado       TEXT NOT NULL DEFAULT 'ABIERTA',
     -- Valores válidos: ABIERTA, EN_PROCESO, CERRADA
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );
