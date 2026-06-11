@@ -30,64 +30,80 @@ public class InscripcionService implements InscripcionServiceInterface {
         return inscripcionRepository.findAll();
     }
 
-@Override
-public Inscripcion findById(int id) {
-    if (id <= 0) return null;
-    return inscripcionRepository.findById(id);
-}
+    @Override
+    public Inscripcion findById(int id) {
+        if (id <= 0) {
+            return null;
+        }
+        return inscripcionRepository.findById(id);
+    }
 
     @Override
     public List<Inscripcion> findByUsuario(int idUsuario) {
-        if (idUsuario <= 0)
+        if (idUsuario <= 0) {
             return new ArrayList<>();
-        return inscripcionRepository.findByUsuario(idUsuario);
+        }
+        List<Inscripcion> todas = inscripcionRepository.findAll();
+        List<Inscripcion> resultado = new ArrayList<>();
+        for (Inscripcion inscripcion : todas) {
+            if (inscripcion.getIdUsuario() == idUsuario) {
+                resultado.add(inscripcion);
+            }
+        }
+        return resultado;
     }
 
-@Override
-public List<Inscripcion> findByActividad(int idActividad) {
-    if (idActividad <= 0) {
-        return new ArrayList<>();
+    @Override
+    public List<Inscripcion> findByActividad(int idActividad) {
+        if (idActividad <= 0) {
+            return new ArrayList<>();
+        }
+        List<Inscripcion> todas = inscripcionRepository.findAll();
+        List<Inscripcion> resultado = new ArrayList<>();
+        for (Inscripcion inscripcion : todas) {
+            if (inscripcion.getIdActividad() == idActividad) {
+                resultado.add(inscripcion);
+            }
+        }
+        return resultado;
     }
-    return inscripcionRepository.findByActividad(idActividad);
-}
 
     @Override
     public boolean save(Inscripcion inscripcion) {
         validarInscripcion(inscripcion);
 
-        // fecha futura → excepción
         if (inscripcion.getFecha().isAfter(LocalDate.now())) {
             throw new IllegalArgumentException("La fecha no puede ser futura");
         }
 
-        // ID duplicado
         if (inscripcionRepository.findById(inscripcion.getId()) != null) {
             return false;
         }
 
-        // usuario no existe
         if (usuarioRepository.findById(inscripcion.getIdUsuario()) == null) {
             return false;
         }
 
-        // actividad no existe
         Actividad actividad = actividadRepository.findById(inscripcion.getIdActividad());
         if (actividad == null) {
             return false;
         }
 
-        // actividad completa → excepción
-        if (actividad.estaCompleta()) {
-            throw new IllegalStateException("La actividad no tiene plazas disponibles");
+        List<Inscripcion> todasLasInscripciones = inscripcionRepository.findAll();
+        boolean yaInscrito = false;
+        for (Inscripcion i : todasLasInscripciones) {
+            if (i.getIdUsuario() == inscripcion.getIdUsuario()
+                    && i.getIdActividad() == inscripcion.getIdActividad()
+                    && Constantes.ACTIVA.equals(i.getEstado())) {
+                yaInscrito = true;
+            }
         }
-
-        // inscripción activa duplicada para mismo usuario+actividad
-        boolean yaInscrito = inscripcionRepository.findByUsuario(inscripcion.getIdUsuario())
-                .stream()
-                .anyMatch(i -> i.getIdActividad() == inscripcion.getIdActividad()
-                        && Constantes.ACTIVA.equals(i.getEstado()));
         if (yaInscrito) {
             return false;
+        }
+
+        if (actividad.estaCompleta()) {
+            throw new IllegalStateException("La actividad no tiene plazas disponibles");
         }
 
         return inscripcionRepository.save(inscripcion);
@@ -95,17 +111,20 @@ public List<Inscripcion> findByActividad(int idActividad) {
 
     @Override
     public boolean update(Inscripcion inscripcion) {
-        if (inscripcion == null)
+        if (inscripcion == null) {
             return false;
-        if (inscripcionRepository.findById(inscripcion.getId()) == null)
+        }
+        if (inscripcionRepository.findById(inscripcion.getId()) == null) {
             return false;
+        }
         return inscripcionRepository.update(inscripcion);
     }
 
     @Override
     public boolean delete(int id) {
-        if (id <= 0)
+        if (id <= 0) {
             return false;
+        }
         return inscripcionRepository.delete(id);
     }
 

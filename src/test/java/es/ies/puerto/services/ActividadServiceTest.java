@@ -132,7 +132,6 @@ class ActividadServiceTest {
                 () -> service.save(new Actividad(10, "Natacion", Constantes.DEPORTIVA, 60, -1, 10, 1)));
     }
 
-    // ── update ───────────────────────────────────────────────────────────────
 
     @Test @Order(15)
     @DisplayName("update actualiza una actividad correctamente")
