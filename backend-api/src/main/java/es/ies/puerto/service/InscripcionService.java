@@ -46,7 +46,7 @@ public class InscripcionService {
 
         Actividad actividad = actividadRepository.findById(inscripcion.getIdActividad()).get();
         if (actividad.getPlazasOcupadas() >= actividad.getPlazasMaximas()) {
-            throw new IllegalArgumentException("La actividad no tiene plazas disponibles");
+            throw new IllegalArgumentException("No hay plazas disponibles para la actividad");
         }
 
         actividad.setPlazasOcupadas(actividad.getPlazasOcupadas() + 1);
