@@ -7,14 +7,11 @@ Proyecto Intermodular · 1º DAM.
 
 ---
 
-## Integrantes del grupo
+## Autor
 
-| Nombre | GitHub | Rol |
-|--------|--------|-----|
-| Iván Mesa Domínguez | @IvnMD | Backend / API REST |
-| Iván Mesa Domínguez | @IvnMD | App JavaFX |
-| Iván Mesa Domínguez | @IvnMD | Base de datos / Docker |
-| Iván Mesa Domínguez | @IvnMD | Web HTML / Documentación |
+| Nombre | GitHub |
+|--------|--------|
+| Iván Mesa Domínguez | @IvnMD |
 
 ---
 
@@ -22,12 +19,12 @@ Proyecto Intermodular · 1º DAM.
 
 | Componente | Tecnología |
 |---|---|
-| App móvil | JavaFX 21 |
-| Backend | Java 17 |
+| App de escritorio | JavaFX 21 |
+| Backend API REST | Java 17 + Spring Boot |
 | Base de datos | SQLite / MariaDB |
 | Web | HTML + CSS + JavaScript |
 | Despliegue | Docker |
-| Repositorio | GitHub |
+| Build | Maven |
 
 ---
 
@@ -35,45 +32,57 @@ Proyecto Intermodular · 1º DAM.
 
 ```text
 centroplus-connect/
-├── backend-api/
-├── mobile-app/
-├── web-html/
+├── backend-api/        # API REST Spring Boot
+├── src/                # App escritorio JavaFX
 ├── database/
 │   ├── schema.sql
-│   ├── seed.sql
-│   └── centroplus.db
-├── docs/
-│   ├── API.md
-│   ├── INSTALLATION.md
-│   └── PROJECT_REPORT.md
+│   └── diagrama-er.png
 ├── docker-compose.yml
 └── README.md
 ```
 
 ---
 
-## Instalación rápida
+## Instalación y ejecución
 
-### Crear la base de datos
-
+### Base de datos
 ```bash
 cd database
 sqlite3 centroplus.db < schema.sql
-sqlite3 centroplus.db < seed.sql
 ```
 
-### Ejecutar la app móvil
-
+### Backend API REST
 ```bash
-cd mobile-app
-mvn clean javafx:run
+cd backend-api
+mvn spring-boot:run
 ```
+La API arranca en `http://localhost:8080`
 
-### Ejecutar tests
-
+### Tests
 ```bash
 mvn clean test
 ```
+
+---
+
+## Endpoints API
+
+| Método | Ruta | Descripción |
+|---|---|---|
+| GET | /api/actividades | Listar actividades |
+| POST | /api/actividades | Crear actividad |
+| GET | /api/actividades/{id} | Obtener actividad |
+| PUT | /api/actividades/{id} | Actualizar actividad |
+| DELETE | /api/actividades/{id} | Eliminar actividad |
+| GET | /api/usuarios | Listar usuarios |
+| POST | /api/usuarios | Crear usuario |
+| GET | /api/usuarios/{id} | Obtener usuario |
+| PUT | /api/usuarios/{id} | Actualizar usuario |
+| DELETE | /api/usuarios/{id} | Eliminar usuario |
+| GET | /api/inscripciones | Listar inscripciones |
+| POST | /api/inscripciones | Crear inscripción |
+| GET | /api/inscripciones/{id} | Obtener inscripción |
+| DELETE | /api/inscripciones/{id} | Eliminar inscripción |
 
 ---
 
@@ -81,7 +90,7 @@ mvn clean test
 
 ```text
 main            ← versiones estables
-develop         ← integración
+develop         ← integración continua
 feature/backend
 feature-mobile
 feature-web
@@ -95,19 +104,13 @@ feature-docs
 ## Arquitectura
 
 ```text
-App JavaFX
-    ↓
-API REST
-    ↓
-Servicios
-    ↓
-Repositorios
-    ↓
-Base de datos SQLite/MariaDB
-
-Web HTML
-    ↓
-API REST
+App JavaFX → API REST → Servicios → Repositorios → SQLite/MariaDB
+Web HTML   → API REST
 ```
+
+## Nota
+
+La app móvil no fue implementada por limitaciones de tiempo.  
+El backend REST está preparado para ser consumido desde cualquier cliente.
 
 </div>
