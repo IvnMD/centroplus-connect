@@ -14,16 +14,12 @@
         <sqlite.version>3.45.3.0</sqlite.version>
         <junit.version>5.10.2</junit.version>
         <mockito.version>5.12.0</mockito.version>
-        <!-- ✅ Corregido: era 0.8.11 -->
         <jacoco.version>0.8.12</jacoco.version>
         <surefire.version>3.2.5</surefire.version>
         <compiler.version>3.11.0</compiler.version>
         <exec.version>3.3.0</exec.version>
-<<<<<<< HEAD
-=======
         <jacoco.version>0.8.12</jacoco.version>
         <mockito-version>5.12.0</mockito-version>
->>>>>>> 2c26db2 (limpiar pom)
         <build-helper.version>3.5.0</build-helper.version>
     </properties>
 
@@ -124,11 +120,7 @@
                         <configuration>
                             <executable>python3</executable>
                             <arguments>
-<<<<<<< HEAD
-                                <argument>${project.basedir}/tools/calcularnota.py</argument>
-=======
                                 <argument>${project.basedir}/tools/calcular_nota.py</argument>
->>>>>>> 2c26db2 (limpiar pom)
                             </arguments>
                         </configuration>
                     </execution>
