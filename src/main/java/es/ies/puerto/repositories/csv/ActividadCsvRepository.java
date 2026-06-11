@@ -53,23 +53,28 @@ public class ActividadCsvRepository implements ActividadRepositoryInterface {
 
     @Override
     public Actividad findById(int id) {
+        if (id <= 0) {
+            return null;
+        }
         try (BufferedReader br = new BufferedReader(new FileReader(path.toString()))) {
             String line;
             while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
-                if (Integer.parseInt(values[0].strip()) == id) {
-                    return new Actividad(
-                            Integer.parseInt(values[0].strip()),
-                            values[1].strip(),
-                            values[2].strip(),
-                            Integer.parseInt(values[3].strip()),
-                            Double.parseDouble(values[4].strip()),
-                            Integer.parseInt(values[5].strip()),
-                            Integer.parseInt(values[6].strip()));
+                if (!line.isBlank()) {
+                    String[] values = line.split(";");
+                    if (Integer.parseInt(values[0].strip()) == id) {
+                        return new Actividad(
+                                Integer.parseInt(values[0].strip()),
+                                values[1].strip(),
+                                values[2].strip(),
+                                Integer.parseInt(values[3].strip()),
+                                Double.parseDouble(values[4].strip()),
+                                Integer.parseInt(values[5].strip()),
+                                Integer.parseInt(values[6].strip()));
+                    }
                 }
             }
         } catch (Exception e) {
-            System.err.printf("No se ha podido leer el fichero %s%n", path);
+            System.err.printf("No se ha podido leer el fichero ", path);
         }
         return null;
     }
