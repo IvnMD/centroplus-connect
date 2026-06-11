@@ -1,6 +1,7 @@
 package es.ies.puerto.models;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Inscripcion {
     private int id;
