@@ -77,4 +77,30 @@ public class InscripcionService {
 
         inscripcionRepository.deleteById(id);
     }
+
+    public List<Inscripcion> findByUsuario(Long idUsuario) {
+    if (idUsuario == null) {
+        throw new IllegalArgumentException("El id de usuario no puede ser null");
+    }
+    List<Inscripcion> resultado = new java.util.ArrayList<>();
+    for (Inscripcion i : inscripcionRepository.findAll()) {
+        if (idUsuario.equals(i.getIdUsuario())) {
+            resultado.add(i);
+        }
+    }
+    return resultado;
+}
+
+public List<Inscripcion> findByActividad(Long idActividad) {
+    if (idActividad == null) {
+        throw new IllegalArgumentException("El id de actividad no puede ser null");
+    }
+    List<Inscripcion> resultado = new java.util.ArrayList<>();
+    for (Inscripcion i : inscripcionRepository.findAll()) {
+        if (idActividad.equals(i.getIdActividad())) {
+            resultado.add(i);
+        }
+    }
+    return resultado;
+    }
 }
