@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="es.ies.puerto.controller.MainController"
+      spacing="10" style="-fx-padding: 10;">
+
+    <Label text="CentroPlus Connect" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+
+    <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
+
+        <!-- USUARIOS -->
+        <Tab text="Usuarios" closable="false">
+            <VBox spacing="8" style="-fx-padding: 8;">
+                <ListView fx:id="listaUsuarios" prefHeight="200"/>
+                <HBox spacing="5">
+                    <TextField fx:id="txtBuscarUsuario" promptText="ID a buscar"/>
+                    <Button text="Buscar" onAction="#buscarUsuario"/>
+                    <Button text="Recargar" onAction="#cargarUsuarios"/>
+                </HBox>
+                <TextField fx:id="txtNombre" promptText="Nombre"/>
+                <TextField fx:id="txtDni" promptText="DNI"/>
+                <TextField fx:id="txtEmail" promptText="Email"/>
+                <TextField fx:id="txtTelefono" promptText="Teléfono"/>
+                <ComboBox fx:id="cmbTipoUsuario" promptText="Tipo usuario" maxWidth="Infinity"/>
+                <HBox spacing="5">
+                    <Button text="Crear usuario" onAction="#crearUsuario" styleClass="btn-primary"/>
+                    <Button text="Eliminar seleccionado" onAction="#eliminarUsuario" styleClass="btn-danger"/>
+                </HBox>
+            </VBox>
+        </Tab>
+
+        <!-- ACTIVIDADES -->
+        <Tab text="Actividades" closable="false">
+            <VBox spacing="8" style="-fx-padding: 8;">
+                <ListView fx:id="listaActividades" prefHeight="200"/>
+                <Button text="Recargar" onAction="#cargarActividades"/>
+                <TextField fx:id="txtNombreAct" promptText="Nombre actividad"/>
+                <ComboBox fx:id="cmbTipoActividad" promptText="Tipo actividad" maxWidth="Infinity"/>
+                <TextField fx:id="txtDuracion" promptText="Duración (minutos)"/>
+                <TextField fx:id="txtPrecio" promptText="Precio"/>
+                <TextField fx:id="txtPlazas" promptText="Plazas máximas"/>
+                <HBox spacing="5">
+                    <Button text="Crear actividad" onAction="#crearActividad" styleClass="btn-primary"/>
+                    <Button text="Eliminar seleccionada" onAction="#eliminarActividad" styleClass="btn-danger"/>
+                </HBox>
+            </VBox>
+        </Tab>
+
+        <!-- INSCRIPCIONES -->
+        <Tab text="Inscripciones" closable="false">
+            <VBox spacing="8" style="-fx-padding: 8;">
+                <ListView fx:id="listaInscripciones" prefHeight="200"/>
+                <Button text="Recargar" onAction="#cargarInscripciones"/>
+                <TextField fx:id="txtIdUsuarioInsc" promptText="ID Usuario"/>
+                <TextField fx:id="txtIdActividadInsc" promptText="ID Actividad"/>
+                <HBox spacing="5">
+                    <Button text="Crear inscripción" onAction="#crearInscripcion" styleClass="btn-primary"/>
+                    <Button text="Eliminar seleccionada" onAction="#eliminarInscripcion" styleClass="btn-danger"/>
+                </HBox>
+            </VBox>
+        </Tab>
+
+        <!-- INCIDENCIAS -->
+        <Tab text="Incidencias" closable="false">
+            <VBox spacing="8" style="-fx-padding: 8;">
+                <ListView fx:id="listaIncidencias" prefHeight="200"/>
+                <Button text="Recargar" onAction="#cargarIncidencias"/>
+                <TextField fx:id="txtIdUsuarioInc" promptText="ID Usuario"/>
+                <TextField fx:id="txtAsunto" promptText="Asunto"/>
+                <TextArea fx:id="txtDescripcion" promptText="Descripción" prefHeight="80"/>
+                <HBox spacing="5">
+                    <Button text="Crear incidencia" onAction="#crearIncidencia" styleClass="btn-primary"/>
+                    <Button text="Eliminar seleccionada" onAction="#eliminarIncidencia" styleClass="btn-danger"/>
+                </HBox>
+            </VBox>
+        </Tab>
+
+    </TabPane>
+</VBox>
