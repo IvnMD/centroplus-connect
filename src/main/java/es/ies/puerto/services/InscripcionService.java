@@ -89,21 +89,21 @@ public class InscripcionService implements InscripcionServiceInterface {
             return false;
         }
 
-        if (actividad.estaCompleta()) {
-            throw new IllegalStateException("La actividad no tiene plazas disponibles");
-        }
-
-        List<Inscripcion> inscripcionesUsuario = inscripcionRepository.findAll();
+        List<Inscripcion> todasLasInscripciones = inscripcionRepository.findAll();
         boolean yaInscrito = false;
-        for (Inscripcion inscripcion3 : inscripcionesUsuario) {
-            if (inscripcion3.getIdUsuario() == inscripcion.getIdUsuario()
-                    && inscripcion3.getIdActividad() == inscripcion.getIdActividad()
-                    && Constantes.ACTIVA.equals(inscripcion3.getEstado())) {
+        for (Inscripcion i : todasLasInscripciones) {
+            if (i.getIdUsuario() == inscripcion.getIdUsuario()
+                    && i.getIdActividad() == inscripcion.getIdActividad()
+                    && Constantes.ACTIVA.equals(i.getEstado())) {
                 yaInscrito = true;
             }
         }
         if (yaInscrito) {
             return false;
+        }
+
+        if (actividad.estaCompleta()) {
+            throw new IllegalStateException("La actividad no tiene plazas disponibles");
         }
 
         return inscripcionRepository.save(inscripcion);
