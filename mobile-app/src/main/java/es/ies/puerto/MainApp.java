@@ -9,9 +9,11 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/es/ies/puerto/fxml/main.fxml"));
-        Scene scene = new Scene(loader.load(), 390, 760);
-        scene.getStylesheets().add(getClass().getResource("/es/ies/puerto/css/estilos.css").toExternalForm());
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/es/ies/puerto/fxml/main.fxml"));
+        Scene scene = new Scene(loader.load(), 900, 650);
+        scene.getStylesheets().add(
+                getClass().getResource("/es/ies/puerto/css/estilos.css").toExternalForm());
         stage.setTitle("CentroPlus Connect");
         stage.setScene(scene);
         stage.show();

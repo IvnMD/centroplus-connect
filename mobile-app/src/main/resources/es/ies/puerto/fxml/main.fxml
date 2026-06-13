@@ -1,81 +1,199 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 
-<VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="es.ies.puerto.controller.MainController"
-      spacing="10" style="-fx-padding: 10;">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-    <Label text="CentroPlus Connect" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+<TitledPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+    prefHeight="646.0" prefWidth="737.0"
+    fx:controller="es.ies.puerto.controller.MainController"
+    xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <content>
+        <TabPane prefHeight="330.0" prefWidth="598.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
 
-    <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
+                <Tab text="USUARIOS">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="467.0"
+                            prefWidth="598.0">
+                            <children>
+                                <TableView fx:id="tablaUsuarios" layoutX="14.0" layoutY="14.0"
+                                    prefHeight="200.0" prefWidth="709.0">
+                                    <columns>
+                                        <TableColumn fx:id="colIdUsuario" prefWidth="75.0" text="ID" />
+                                        <TableColumn fx:id="colNombreUsuario" prefWidth="75.0"
+                                            text="NOMBRE" />
+                                        <TableColumn fx:id="colDniUsuario" prefWidth="75.0"
+                                            text="DNI" />
+                                        <TableColumn fx:id="colTipoUsuario" prefWidth="75.0"
+                                            text="TIPO" />
+                                        <TableColumn fx:id="colEmailUsuario" prefWidth="75.0"
+                                            text="EMAIL" />
+                                        <TableColumn fx:id="colTelefonoUsuario" prefWidth="75.0"
+                                            text="TELEFONO" />
+                                    </columns>
+                                </TableView>
+                                <TextField fx:id="txtBuscarUsuario" layoutX="14.0" layoutY="216.0"
+                                    prefHeight="26.0" prefWidth="206.0" promptText="BUSCAR POR ID" />
+                                <Button layoutX="231.0" layoutY="214.0" mnemonicParsing="false"
+                                    text="Buscar" onAction="#buscarUsuario" />
+                                <Button layoutX="302.0" layoutY="214.0" mnemonicParsing="false"
+                                    text="Recargar" onAction="#cargarUsuarios" />
+                                <TextField fx:id="txtNombre" layoutX="14.0" layoutY="251.0"
+                                    prefHeight="26.0" prefWidth="356.0" promptText="NOMBRE" />
+                                <TextField fx:id="txtDni" layoutX="14.0" layoutY="287.0"
+                                    prefHeight="26.0" prefWidth="358.0" promptText="DNI" />
+                                <TextField fx:id="txtEmail" layoutX="14.0" layoutY="323.0"
+                                    prefHeight="26.0" prefWidth="358.0" promptText="E-MAIL" />
+                                <TextField fx:id="txtTelefono" layoutX="14.0" layoutY="360.0"
+                                    prefWidth="357.0" promptText="TELEFONO" />
+                                <ComboBox fx:id="cmbTipoUsuario" layoutX="14.0" layoutY="394.0"
+                                    prefWidth="358.0" promptText="TIPO USUARIO" />
+                                <Button layoutX="39.0" layoutY="440.0" mnemonicParsing="false"
+                                    text="Crear usuario" onAction="#crearUsuario" />
+                                <Button layoutX="210.0" layoutY="440.0" mnemonicParsing="false"
+                                    text="Borrar usuario" onAction="#eliminarUsuario" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
 
-        <!-- USUARIOS -->
-        <Tab text="Usuarios" closable="false">
-            <VBox spacing="8" style="-fx-padding: 8;">
-                <ListView fx:id="listaUsuarios" prefHeight="200"/>
-                <HBox spacing="5">
-                    <TextField fx:id="txtBuscarUsuario" promptText="ID a buscar"/>
-                    <Button text="Buscar" onAction="#buscarUsuario"/>
-                    <Button text="Recargar" onAction="#cargarUsuarios"/>
-                </HBox>
-                <TextField fx:id="txtNombre" promptText="Nombre"/>
-                <TextField fx:id="txtDni" promptText="DNI"/>
-                <TextField fx:id="txtEmail" promptText="Email"/>
-                <TextField fx:id="txtTelefono" promptText="Teléfono"/>
-                <ComboBox fx:id="cmbTipoUsuario" promptText="Tipo usuario" maxWidth="Infinity"/>
-                <HBox spacing="5">
-                    <Button text="Crear usuario" onAction="#crearUsuario" styleClass="btn-primary"/>
-                    <Button text="Eliminar seleccionado" onAction="#eliminarUsuario" styleClass="btn-danger"/>
-                </HBox>
-            </VBox>
-        </Tab>
+                <Tab text="ACTIVIDADES">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="467.0"
+                            prefWidth="598.0">
+                            <children>
+                                <TableView fx:id="tablaActividades" layoutX="14.0" layoutY="14.0"
+                                    prefHeight="200.0" prefWidth="709.0">
+                                    <columns>
+                                        <TableColumn fx:id="colIdActividad" prefWidth="75.0"
+                                            text="ID" />
+                                        <TableColumn fx:id="colNombreActividad" prefWidth="75.0"
+                                            text="NOMBRE" />
+                                        <TableColumn fx:id="colTipoActividad" prefWidth="75.0"
+                                            text="TIPO" />
+                                        <TableColumn fx:id="colPrecio" prefWidth="75.0"
+                                            text="PRECIO" />
+                                        <TableColumn fx:id="colDuracion" prefWidth="75.0"
+                                            text="DURACION" />
+                                        <TableColumn fx:id="colPlazas" prefWidth="75.0"
+                                            text="PLAZAS" />
+                                        <TableColumn fx:id="colPlazasLibres" prefWidth="75.0"
+                                            text="PLAZAS LIBRES" />
+                                    </columns>
+                                </TableView>
+                                <TextField fx:id="txtNombreAct" layoutX="14.0" layoutY="216.0"
+                                    prefHeight="26.0" prefWidth="356.0" promptText="NOMBRE" />
+                                <Button layoutX="231.0" layoutY="214.0" mnemonicParsing="false"
+                                    text="Recargar" onAction="#cargarActividades" />
+                                <TextField fx:id="txtDuracion" layoutX="14.0" layoutY="251.0"
+                                    prefHeight="26.0" prefWidth="356.0" promptText="DURACION (min)" />
+                                <TextField fx:id="txtPrecio" layoutX="14.0" layoutY="287.0"
+                                    prefHeight="26.0" prefWidth="358.0" promptText="PRECIO" />
+                                <TextField fx:id="txtPlazas" layoutX="14.0" layoutY="323.0"
+                                    prefHeight="26.0" prefWidth="358.0" promptText="PLAZAS MAXIMAS" />
+                                <ComboBox fx:id="cmbTipoActividad" layoutX="14.0" layoutY="360.0"
+                                    prefWidth="358.0" promptText="TIPO ACTIVIDAD" />
+                                <Button layoutX="39.0" layoutY="440.0" mnemonicParsing="false"
+                                    text="Crear actividad" onAction="#crearActividad" />
+                                <Button layoutX="210.0" layoutY="440.0" mnemonicParsing="false"
+                                    text="Borrar actividad" onAction="#eliminarActividad" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
 
-        <!-- ACTIVIDADES -->
-        <Tab text="Actividades" closable="false">
-            <VBox spacing="8" style="-fx-padding: 8;">
-                <ListView fx:id="listaActividades" prefHeight="200"/>
-                <Button text="Recargar" onAction="#cargarActividades"/>
-                <TextField fx:id="txtNombreAct" promptText="Nombre actividad"/>
-                <ComboBox fx:id="cmbTipoActividad" promptText="Tipo actividad" maxWidth="Infinity"/>
-                <TextField fx:id="txtDuracion" promptText="Duración (minutos)"/>
-                <TextField fx:id="txtPrecio" promptText="Precio"/>
-                <TextField fx:id="txtPlazas" promptText="Plazas máximas"/>
-                <HBox spacing="5">
-                    <Button text="Crear actividad" onAction="#crearActividad" styleClass="btn-primary"/>
-                    <Button text="Eliminar seleccionada" onAction="#eliminarActividad" styleClass="btn-danger"/>
-                </HBox>
-            </VBox>
-        </Tab>
+                <Tab text="INSCRIPCIONES">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="467.0"
+                            prefWidth="598.0">
+                            <children>
+                                <TableView fx:id="tablaInscripciones" layoutX="14.0" layoutY="14.0"
+                                    prefHeight="200.0" prefWidth="709.0">
+                                    <columns>
+                                        <TableColumn fx:id="colIdInscripcion" prefWidth="75.0"
+                                            text="ID" />
+                                        <TableColumn fx:id="colIdUsuarioInsc" prefWidth="75.0"
+                                            text="ID USUARIO" />
+                                        <TableColumn fx:id="colIdActividadInsc" prefWidth="75.0"
+                                            text="ID ACTIVIDAD" />
+                                        <TableColumn fx:id="colFechaInscripcion" prefWidth="75.0"
+                                            text="FECHA" />
+                                        <TableColumn fx:id="colEstadoInscripcion" prefWidth="75.0"
+                                            text="ESTADO" />
+                                    </columns>
+                                </TableView>
+                                <TextField fx:id="txtIdUsuarioInsc" layoutX="14.0" layoutY="216.0"
+                                    prefHeight="26.0" prefWidth="356.0" promptText="ID USUARIO" />
+                                <TextField fx:id="txtIdActividadInsc" layoutX="14.0" layoutY="251.0"
+                                    prefHeight="26.0" prefWidth="356.0" promptText="ID ACTIVIDAD" />
+                                <Button layoutX="231.0" layoutY="214.0" mnemonicParsing="false"
+                                    text="Recargar" onAction="#cargarInscripciones" />
+                                <Button layoutX="39.0" layoutY="440.0" mnemonicParsing="false"
+                                    text="Crear inscripcion" onAction="#crearInscripcion" />
+                                <Button layoutX="210.0" layoutY="440.0" mnemonicParsing="false"
+                                    text="Borrar inscripcion" onAction="#eliminarInscripcion" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
 
-        <!-- INSCRIPCIONES -->
-        <Tab text="Inscripciones" closable="false">
-            <VBox spacing="8" style="-fx-padding: 8;">
-                <ListView fx:id="listaInscripciones" prefHeight="200"/>
-                <Button text="Recargar" onAction="#cargarInscripciones"/>
-                <TextField fx:id="txtIdUsuarioInsc" promptText="ID Usuario"/>
-                <TextField fx:id="txtIdActividadInsc" promptText="ID Actividad"/>
-                <HBox spacing="5">
-                    <Button text="Crear inscripción" onAction="#crearInscripcion" styleClass="btn-primary"/>
-                    <Button text="Eliminar seleccionada" onAction="#eliminarInscripcion" styleClass="btn-danger"/>
-                </HBox>
-            </VBox>
-        </Tab>
 
-        <!-- INCIDENCIAS -->
-        <Tab text="Incidencias" closable="false">
-            <VBox spacing="8" style="-fx-padding: 8;">
-                <ListView fx:id="listaIncidencias" prefHeight="200"/>
-                <Button text="Recargar" onAction="#cargarIncidencias"/>
-                <TextField fx:id="txtIdUsuarioInc" promptText="ID Usuario"/>
-                <TextField fx:id="txtAsunto" promptText="Asunto"/>
-                <TextArea fx:id="txtDescripcion" promptText="Descripción" prefHeight="80"/>
-                <HBox spacing="5">
-                    <Button text="Crear incidencia" onAction="#crearIncidencia" styleClass="btn-primary"/>
-                    <Button text="Eliminar seleccionada" onAction="#eliminarIncidencia" styleClass="btn-danger"/>
-                </HBox>
-            </VBox>
-        </Tab>
+                <Tab text="INCIDENCIAS">
+                    <content>
+                        <AnchorPane prefHeight="500.0" prefWidth="710.0">
+                            <children>
+                                <TableView fx:id="tablaIncidencias"
+                                    layoutX="14.0" layoutY="14.0"
+                                    prefHeight="200.0" prefWidth="709.0">
+                                    <columns>
+                                        <TableColumn fx:id="colIdIncidencia" prefWidth="60.0"
+                                            text="ID" />
+                                        <TableColumn fx:id="colIdUsuarioInc" prefWidth="100.0"
+                                            text="ID USUARIO" />
+                                        <TableColumn fx:id="colAsunto" prefWidth="200.0"
+                                            text="ASUNTO" />
+                                        <TableColumn fx:id="colEstadoIncidencia" prefWidth="100.0"
+                                            text="ESTADO" />
+                                        <TableColumn fx:id="colFechaIncidencia" prefWidth="120.0"
+                                            text="FECHA" />
+                                    </columns>
+                                </TableView>
 
-    </TabPane>
-</VBox>
+                                <Button layoutX="14.0" layoutY="222.0"
+                                    text="Recargar" onAction="#cargarIncidencias" />
+
+                                <TextField fx:id="txtIdUsuarioInc"
+                                    layoutX="14.0" layoutY="258.0"
+                                    prefWidth="356.0" promptText="ID USUARIO" />
+                                <TextField fx:id="txtAsunto"
+                                    layoutX="14.0" layoutY="294.0"
+                                    prefWidth="356.0" promptText="ASUNTO" />
+                                <TextArea fx:id="txtDescripcion"
+                                    layoutX="14.0" layoutY="330.0"
+                                    prefWidth="356.0" prefHeight="80.0"
+                                    promptText="DESCRIPCION" />
+
+                                <Button layoutX="39.0" layoutY="448.0"
+                                    text="Crear incidencia" onAction="#crearIncidencia" />
+                                <Button layoutX="210.0" layoutY="448.0"
+                                    text="Borrar incidencia" onAction="#eliminarIncidencia" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+
+            </tabs>
+        </TabPane>
+    </content>
+</TitledPane>

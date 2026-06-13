@@ -1,5 +1,5 @@
 .root {
-    -fx-background-color: #111827;
+    -fx-background-color: #020617;
     -fx-font-family: "Segoe UI", sans-serif;
     -fx-font-size: 13px;
 }
@@ -8,100 +8,176 @@
     -fx-text-fill: #e5e7eb;
 }
 
+/* TABS */
 .tab-pane {
-    -fx-background-color: #111827;
+    -fx-background-color: #020617;
 }
 
 .tab-pane .tab-header-area .tab-header-background {
-    -fx-background-color: #020617;
+    -fx-background-color: #0f172a;
 }
 
 .tab {
-    -fx-background-color: #1f2937;
+    -fx-background-color: #1e3a5f;
+    -fx-background-radius: 6 6 0 0;
 }
 
 .tab:selected {
-    -fx-background-color: #111827;
+    -fx-background-color: #14b8a6;
+    -fx-background-radius: 6 6 0 0;
 }
 
 .tab .tab-label {
-    -fx-text-fill: #9ca3af;
+    -fx-text-fill: #94a3b8;
+    -fx-font-weight: bold;
 }
 
 .tab:selected .tab-label {
-    -fx-text-fill: #f9fafb;
+    -fx-text-fill: #020617;
+    -fx-font-weight: bold;
 }
 
-.list-view {
-    -fx-background-color: #020617;
-    -fx-border-color: #1f2937;
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
+/* TABLE VIEW */
+.table-view {
+    -fx-background-color: #0f172a;
+    -fx-border-color: #1e3a5f;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
 }
 
-.list-cell {
-    -fx-background-color: #020617;
+.table-view .column-header-background {
+    -fx-background-color: #1e3a5f;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: #1e3a5f;
+    -fx-border-color: #2d4a7a;
+    -fx-size: 32px;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #14b8a6;
+    -fx-font-weight: bold;
+}
+
+.table-row-cell {
+    -fx-background-color: #0f172a;
     -fx-text-fill: #e5e7eb;
+    -fx-border-color: #1e3a5f;
+    -fx-border-width: 0 0 1 0;
 }
 
-.list-cell:selected {
-    -fx-background-color: #1f2937;
+.table-row-cell:odd {
+    -fx-background-color: #0d1526;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #164e63;
+}
+
+.table-cell {
+    -fx-text-fill: #e5e7eb;
+    -fx-border-color: transparent;
+}
+
+.table-row-cell:selected .table-cell {
     -fx-text-fill: #14b8a6;
 }
 
+.table-view .placeholder .label {
+    -fx-text-fill: #475569;
+}
+
+/* INPUTS */
 .text-field, .text-area, .combo-box {
-    -fx-background-color: #020617;
+    -fx-background-color: #0f172a;
     -fx-text-fill: #e5e7eb;
-    -fx-prompt-text-fill: #9ca3af;
-    -fx-border-color: #374151;
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
+    -fx-prompt-text-fill: #475569;
+    -fx-border-color: #1e3a5f;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
 }
 
 .text-field:focused, .text-area:focused {
     -fx-border-color: #14b8a6;
+    -fx-effect: dropshadow(gaussian, #14b8a640, 6, 0, 0, 0);
 }
 
 .combo-box .list-cell {
-    -fx-background-color: #020617;
+    -fx-background-color: #0f172a;
     -fx-text-fill: #e5e7eb;
 }
 
+/* BOTONES */
 .btn-primary {
     -fx-background-color: #14b8a6;
     -fx-text-fill: #020617;
     -fx-font-weight: bold;
-    -fx-background-radius: 5;
+    -fx-background-radius: 6;
     -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #14b8a660, 8, 0, 0, 2);
 }
 
 .btn-primary:hover {
-    -fx-background-color: #0f9488;
+    -fx-background-color: #2dd4bf;
+    -fx-effect: dropshadow(gaussian, #14b8a6aa, 12, 0, 0, 3);
 }
 
 .btn-danger {
     -fx-background-color: #f97316;
     -fx-text-fill: #020617;
     -fx-font-weight: bold;
-    -fx-background-radius: 5;
+    -fx-background-radius: 6;
     -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #f9731660, 8, 0, 0, 2);
 }
 
 .btn-danger:hover {
-    -fx-background-color: #ea6c0a;
+    -fx-background-color: #fb923c;
+    -fx-effect: dropshadow(gaussian, #f97316aa, 12, 0, 0, 3);
 }
 
 .button {
-    -fx-background-color: #1f2937;
-    -fx-text-fill: #e5e7eb;
-    -fx-background-radius: 5;
+    -fx-background-color: #1e3a5f;
+    -fx-text-fill: #94a3b8;
+    -fx-background-radius: 6;
     -fx-cursor: hand;
 }
 
 .button:hover {
-    -fx-background-color: #374151;
+    -fx-background-color: #2d4a7a;
+    -fx-text-fill: #e5e7eb;
 }
 
+/* TITLED PANE */
+.titled-pane {
+    -fx-background-color: #020617;
+}
+
+.titled-pane > .title {
+    -fx-background-color: #0f172a;
+}
+
+.titled-pane > .title > .text {
+    -fx-fill: #14b8a6;
+    -fx-font-weight: bold;
+}
+
+/* SCROLL */
 .scroll-pane {
-    -fx-background-color: #111827;
+    -fx-background-color: #020617;
+}
+
+.scroll-bar {
+    -fx-background-color: #0f172a;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #1e3a5f;
+    -fx-background-radius: 4;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #14b8a6;
 }
