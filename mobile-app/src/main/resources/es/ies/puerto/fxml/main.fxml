@@ -10,7 +10,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -170,7 +169,7 @@
                                     </columns>
                                 </TableView>
 
-                                <Button layoutX="14.0" layoutY="222.0"
+                                <Button layoutX="231.0" layoutY="214.0" mnemonicParsing="false"
                                     text="Recargar" onAction="#cargarIncidencias" />
 
                                 <TextField fx:id="txtIdUsuarioInc"
