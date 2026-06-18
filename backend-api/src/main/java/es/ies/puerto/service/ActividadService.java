@@ -20,12 +20,13 @@ public class ActividadService {
     return actividadRepository.findAll();
   }
 
-  public Actividad findById(Long id) {
+public Actividad findById(Long id) {
     if (!actividadRepository.existsById(id)) {
-      throw new IllegalArgumentException("Actividad no encontrada con id: " + id);
+        throw new IllegalArgumentException("Actividad no encontrada con id: " + id);
     }
-    return actividadRepository.findById(id).get();
-  }
+    Actividad actividad = actividadRepository.findActividadById(id);
+    return actividad;
+}
 
   public Actividad save(Actividad actividad) {
     if (actividad.getNombre() == null || actividad.getNombre().isEmpty()) {

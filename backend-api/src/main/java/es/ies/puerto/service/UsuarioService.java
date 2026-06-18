@@ -18,12 +18,13 @@ public class UsuarioService {
     return usuarioRepository.findAll();
   }
 
-  public Usuario findById(Long id) {
+public Usuario findById(Long id) {
     if (!usuarioRepository.existsById(id)) {
-      throw new IllegalArgumentException("Usuario no encontrado con id: " + id);
+        throw new IllegalArgumentException("Usuario no encontrado con id: " + id);
     }
-    return usuarioRepository.findById(id).get();
-  }
+    Usuario usuario = usuarioRepository.findUsuarioById(id);
+    return usuario;
+}
 
   public Usuario save(Usuario usuario) {
     if (usuario.getNombre() == null || usuario.getNombre().isEmpty()) {

@@ -45,24 +45,4 @@ public class Inscripcion {
     public String getEstado() {
         return estado;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null) {
-            return false;
-        }
-        if (!(o instanceof Inscripcion)) {
-            return false;
-        }
-        Inscripcion that = (Inscripcion) o;
-        return id == that.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
